@@ -1,0 +1,644 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFF"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+
+    <RelativeLayout
+        android:id="@+id/layout_intro"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="visible"
+        tools:visibility="visible"
+
+        >
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="16dp"
+            android:contentDescription="@string/green_globe_img"
+            android:scaleType="fitEnd"
+            android:src="@drawable/green_globe" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/quiz"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:layout_marginTop="24dp"
+                android:text="@string/quiz_title"
+                android:textAlignment="center"
+                android:textColor="@color/lime_green"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/text_topic"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="24dp"
+                android:text="@string/world_capitals"
+                android:textAlignment="center"
+                android:textColor="@color/colorAccent"
+                android:textSize="17sp" />
+
+
+            <TextView
+                android:id="@+id/text_6_questions"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                android:layout_marginTop="24dp"
+                android:text="@string/_6_questions"
+                android:textAlignment="center"
+                android:textColor="#000"
+                android:textSize="18sp" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+
+                <EditText
+                    android:id="@+id/name_field"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="24dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_weight="0.8"
+                    android:hint="@string/enter_your_name"
+                    android:inputType="textCapCharacters"
+                    android:textAlignment="center"
+                    android:textColorHint="#000" />
+
+                <Button
+                    android:id="@+id/button_start"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="24dp"
+                    android:layout_weight="0.2"
+                    android:background="#a9a9a9"
+                    android:onClick="startQuiz"
+                    android:text="@string/start_button_text" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/layout_questions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="invisible"
+        tools:visibility="invisible"
+
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="serif-monospace"
+            android:text="@string/quiz_capitals_cities_banner"
+            android:textColor="#32CD32"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="24dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="16dp"
+                android:layout_weight="0.2"
+                android:text="@string/player_name_label"
+                android:textColor="#5CB3FF"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/name_display"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="24dp"
+                android:layout_marginTop="16dp"
+                android:layout_weight="0.6"
+                android:text="@string/name_player_from_input"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="24dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="16dp"
+                android:layout_weight="0.15"
+                android:text="@string/score_label"
+                android:textColor="#5CB3FF"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/score"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="24dp"
+                android:layout_marginTop="16dp"
+                android:layout_weight="0.15"
+                android:text="@string/score_value"
+                android:textStyle="bold"
+
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="24dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="10dp"
+                android:text="@string/question_counter_label"
+                android:textColor="#5CB3FF"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/counter"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="24dp"
+                android:layout_marginTop="10dp"
+                android:text="@string/question_counter_value"
+                android:textStyle="bold" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/text_card_q1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="24dp"
+            android:background="@drawable/round_corners"
+            android:elevation="30dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="visible"
+            tools:visibility="visible">
+
+
+            <TextView
+                android:id="@+id/text_current_question"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginBottom="50dp"
+                android:layout_weight="0.25"
+                android:gravity="center"
+                android:text="@string/what_s_the_capital_of_venezuela"
+                android:textSize="20sp" />
+
+
+            <RadioGroup
+                android:id="@+id/rg_question1"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <RadioButton
+                    android:id="@+id/q1_buenos_aires"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="onRb1Clicked"
+                    android:text="@string/choice1_buenos_aires" />
+
+
+                <RadioButton
+                    android:id="@+id/q1_santa_maria"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="onRb1Clicked"
+                    android:text="@string/choice2_santa_maria" />
+
+                <RadioButton
+                    android:id="@+id/q1_caracas"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="onRb1Clicked"
+                    android:text="@string/choice3_caracas" />
+
+            </RadioGroup>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/text_card_q2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="24dp"
+            android:background="@drawable/round_corners"
+            android:elevation="30dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone"
+            tools:visibility="gone">
+
+
+            <TextView
+                android:id="@+id/text_question2"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginBottom="50dp"
+                android:layout_weight="0.25"
+                android:gravity="center"
+                android:text="@string/q2_select_all_nation_capitals"
+                android:textSize="20sp" />
+
+            <LinearLayout
+                android:id="@+id/text_p_answer2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="24dp"
+                android:layout_marginStart="70dp"
+                android:gravity="start"
+                android:orientation="vertical"
+                tools:ignore="RtlHardcoded">
+
+
+                <CheckBox
+                    android:id="@+id/answer2_sao_paolo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="24dp"
+                    android:paddingLeft="16dp"
+                    android:text="@string/choice21_sao_paolo"
+                    android:textSize="16sp"
+                    android:textStyle="italic"
+                    tools:ignore="RtlSymmetry" />
+
+                <CheckBox
+                    android:id="@+id/answer2_barcelona"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="16dp"
+                    android:text="@string/choice22_barcelona"
+                    android:textSize="16sp"
+                    android:textStyle="italic"
+                    tools:ignore="RtlSymmetry" />
+
+                <CheckBox
+                    android:id="@+id/answer2_ottawa"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="1dp"
+                    android:text="@string/choice23_ottawa"
+                    android:textSize="16sp"
+                    android:textStyle="italic" />
+
+                <CheckBox
+                    android:id="@+id/answer2_rome"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="1dp"
+                    android:text="@string/choice24_rome"
+                    android:textSize="16sp"
+                    android:textStyle="italic" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/text_card_q3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="24dp"
+            android:background="@drawable/round_corners"
+            android:elevation="30dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone"
+            tools:visibility="gone">
+
+
+            <TextView
+                android:id="@+id/text_question3"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginBottom="50dp"
+                android:layout_weight="0.25"
+                android:gravity="center"
+                android:text="@string/q3_name_a_capital_in_africa"
+                android:textSize="20sp" />
+
+            <LinearLayout
+                android:id="@+id/text_p_answer3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="24dp"
+                android:layout_marginLeft="70dp"
+                android:layout_marginRight="70dp"
+                android:gravity="start"
+                android:orientation="vertical">
+
+                <EditText
+                    android:id="@+id/answer3_editText_cap_in_africa"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="24dp"
+                    android:layout_marginTop="24dp"
+                    android:hint="@string/input3_your_answer_here"
+                    android:inputType="textCapWords"
+                    android:textAlignment="center" />
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/text_card_q4"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="24dp"
+            android:background="@drawable/round_corners"
+            android:elevation="30dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone"
+            tools:visibility="gone">
+
+
+            <TextView
+                android:id="@+id/text_question4"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginBottom="50dp"
+                android:layout_weight="0.25"
+                android:gravity="center"
+                android:text="@string/q4_which_one_of_these_cities_is_a_nation_capital"
+                android:textSize="20sp" />
+
+
+            <RadioGroup
+                android:id="@+id/rg_question4"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="24dp"
+                android:layout_marginLeft="70dp"
+                android:layout_marginRight="70dp"
+                android:gravity="start"
+                android:orientation="vertical">
+
+                <RadioButton
+                    android:id="@+id/answer4_kathmandu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="onRb4Clicked"
+                    android:paddingEnd="1dp"
+                    android:paddingStart="16dp"
+                    android:text="@string/choice41_kathmandu" />
+
+                <RadioButton
+                    android:id="@+id/answer4_kyoto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="onRb4Clicked"
+                    android:paddingEnd="1dp"
+                    android:paddingStart="16dp"
+                    android:text="@string/choice42_kyoto" />
+
+                <RadioButton
+                    android:id="@+id/answer4_Amara"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="onRb4Clicked"
+                    android:paddingEnd="1dp"
+                    android:paddingStart="16dp"
+                    android:text="@string/choice43_amara" />
+
+            </RadioGroup>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/text_card_q5"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="24dp"
+            android:background="@drawable/round_corners"
+            android:elevation="30dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone"
+            tools:visibility="gone">
+
+
+            <TextView
+                android:id="@+id/text_question5"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginBottom="50dp"
+                android:layout_weight="0.25"
+                android:gravity="center"
+                android:text="@string/q5_damascus_is_the_capital_of_turkey"
+                android:textSize="20sp" />
+
+
+
+                <RadioGroup
+                    android:id="@+id/rg_question5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="24dp"
+                    android:layout_marginLeft="70dp"
+                    android:layout_marginRight="70dp"
+                    android:gravity="start"
+                    android:orientation="vertical">
+
+
+                    <RadioButton
+                        android:id="@+id/answer5_true_damascus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="24dp"
+                        android:onClick="onRb5Clicked"
+                        android:paddingEnd="1dp"
+                        android:paddingStart="16dp"
+                        android:text="@string/choice51_true"
+                        android:textSize="16sp"
+                        android:textStyle="italic" />
+
+                    <RadioButton
+                        android:id="@+id/answer5_false_damascus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:onClick="onRb5Clicked"
+                        android:paddingEnd="1dp"
+                        android:paddingStart="16dp"
+                        android:text="@string/choice52_false"
+                        android:textSize="16sp"
+                        android:textStyle="italic" />
+
+
+                </RadioGroup>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/text_card_q6"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="24dp"
+            android:background="@drawable/round_corners"
+            android:elevation="30dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone"
+            tools:visibility="gone">
+
+
+            <TextView
+                android:id="@+id/text_question6"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginBottom="50dp"
+                android:layout_weight="0.25"
+                android:gravity="center"
+                android:text="@string/q6_which_of_these_cities_can_you_find_in_south_america"
+                android:textSize="20sp" />
+
+            <LinearLayout
+                android:id="@+id/text_p_answer6"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="24dp"
+                android:layout_marginStart="70dp"
+                android:gravity="start"
+                android:orientation="vertical">
+
+
+                <CheckBox
+                    android:id="@+id/answer6_porto_novo_in_sa"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="24dp"
+                    android:paddingEnd="1dp"
+                    android:paddingStart="16dp"
+                    android:text="@string/choice61_porto_novo"
+                    android:textSize="16sp"
+                    android:textStyle="italic" />
+
+                <CheckBox
+                    android:id="@+id/answer6_lisbon_in_sa"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingEnd="1dp"
+                    android:paddingStart="16dp"
+                    android:text="@string/choice62_santiago"
+                    android:textSize="16sp"
+                    android:textStyle="italic" />
+
+                <CheckBox
+                    android:id="@+id/answer6_lima_in_sa"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingEnd="1dp"
+                    android:paddingStart="16dp"
+                    android:text="@string/choice63_lima"
+                    android:textSize="16sp"
+                    android:textStyle="italic" />
+
+                <CheckBox
+                    android:id="@+id/answer6_georgetown_in_sa"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingEnd="1dp"
+                    android:paddingStart="16dp"
+                    android:text="@string/choice64_georgetown"
+                    android:textSize="16sp"
+                    android:textStyle="italic" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+        <Button
+            android:id="@+id/button_submit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="24dp"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/round_corners"
+            android:elevation="30dp"
+            android:onClick="submit"
+            android:text="@string/submit_button_label"
+            android:textAlignment="center"
+            android:visibility="visible"
+            tools:visibility="visible" />
+
+        <Button
+            android:id="@+id/button_reset"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="24dp"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/round_corners"
+            android:elevation="30dp"
+            android:onClick="reset"
+            android:text="@string/reset_button_label"
+            android:textColor="@color/colorAccent"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:visibility="gone"
+            tools:visibility="invisible" />
+
+
+    </LinearLayout>
+
+
+</RelativeLayout>
