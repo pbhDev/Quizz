@@ -13,14 +13,14 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:visibility="visible"
-        tools:visibility="visible"
+        tools:visibility="invisible"
 
         >
 
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="16dp"
+            android:layout_margin="@dimen/margin_1st_image"
             android:contentDescription="@string/green_globe_img"
             android:scaleType="fitEnd"
             android:src="@drawable/green_globe" />
@@ -34,20 +34,20 @@
                 android:id="@+id/quiz"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:layout_marginTop="24dp"
+                android:layout_marginBottom="@dimen/margin_title_bottom"
+                android:layout_marginTop="@dimen/margin_title_top"
                 android:text="@string/quiz_title"
                 android:textAlignment="center"
                 android:textColor="@color/lime_green"
-                android:textSize="20sp"
+                android:textSize="@dimen/textsize_title"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/text_topic"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:layout_marginTop="24dp"
+                android:layout_marginBottom="@dimen/margin_2nd_title_bottom"
+                android:layout_marginTop="@dimen/margin_2nd_title_top"
                 android:text="@string/world_capitals"
                 android:textAlignment="center"
                 android:textColor="@color/colorAccent"
@@ -58,8 +58,8 @@
                 android:id="@+id/text_6_questions"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="24dp"
-                android:layout_marginTop="24dp"
+                android:layout_marginBottom="@dimen/margin_question_view"
+                android:layout_marginTop="@dimen/margin_question_view"
                 android:text="@string/_6_questions"
                 android:textAlignment="center"
                 android:textColor="#000"
@@ -76,10 +76,10 @@
                     android:id="@+id/name_field"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="24dp"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginTop="24dp"
+                    android:layout_marginBottom="@dimen/margin_input_text_top"
+                    android:layout_marginEnd="@dimen/margin_title_top"
+                    android:layout_marginStart="@dimen/margin_input_text_top"
+                    android:layout_marginTop="@dimen/margin_input_text_top"
                     android:layout_weight="0.8"
                     android:hint="@string/enter_your_name"
                     android:inputType="textCapCharacters"
@@ -111,7 +111,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:visibility="invisible"
-        tools:visibility="invisible"
+        tools:visibility="visible"
 
         >
 
@@ -119,12 +119,12 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="center"
-            android:layout_marginBottom="5dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginBottom="@dimen/margin_2nd_title_bottom"
+            android:layout_marginTop="@dimen/margin_title_bottom"
             android:fontFamily="serif-monospace"
-            android:text="@string/quiz_capitals_cities_banner"
+            android:text="@string/world_capitals"
             android:textColor="#32CD32"
-            android:textSize="16sp"
+            android:textSize="@dimen/textsize_2nd_title"
             android:textStyle="bold" />
 
         <LinearLayout
@@ -135,21 +135,21 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_marginBottom="24dp"
+                android:layout_marginBottom="@dimen/margin_label_bottom"
                 android:layout_marginEnd="5dp"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginStart="@dimen/margin_label_left"
+                android:layout_marginTop="@dimen/margin_label_top"
                 android:layout_weight="0.2"
                 android:text="@string/player_name_label"
-                android:textColor="#5CB3FF"
+                android:textColor="@color/color_label"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/name_display"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_marginBottom="24dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginBottom="@dimen/margin_name_bottom"
+                android:layout_marginTop="@dimen/margin_name_top"
                 android:layout_weight="0.6"
                 android:text="@string/name_player_from_input"
                 android:textStyle="bold" />
@@ -157,21 +157,21 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_marginBottom="24dp"
-                android:layout_marginEnd="5dp"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginBottom="@dimen/margin_scorelabel_bottom"
+                android:layout_marginEnd="@dimen/margin_scorelabel_right"
+                android:layout_marginStart="@dimen/margin_scorelabel_left"
+                android:layout_marginTop="@dimen/margin_scorellabel_top"
                 android:layout_weight="0.15"
                 android:text="@string/score_label"
-                android:textColor="#5CB3FF"
+                android:textColor="@color/color_label"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/score"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_marginBottom="24dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginBottom="@dimen/margin_textscore_bottom"
+                android:layout_marginTop="@dimen/margin_textscore_top"
                 android:layout_weight="0.15"
                 android:text="@string/score_value"
                 android:textStyle="bold"
@@ -189,20 +189,20 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_marginBottom="24dp"
-                android:layout_marginEnd="5dp"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginBottom="@dimen/margin_labelquestion_bottom"
+                android:layout_marginEnd="@dimen/margin_labelquestion_right"
+                android:layout_marginStart="@dimen/margin_labelquestion_left"
+                android:layout_marginTop="@dimen/margin_labelquestion_top"
                 android:text="@string/question_counter_label"
-                android:textColor="#5CB3FF"
+                android:textColor="@color/color_label"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/counter"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_marginBottom="24dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginBottom="@dimen/margin_textquestion_number_bottom"
+                android:layout_marginTop="@dimen/margin_textquestion_number_top"
                 android:text="@string/question_counter_value"
                 android:textStyle="bold" />
 
@@ -213,9 +213,9 @@
             android:id="@+id/text_card_q1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="24dp"
+            android:layout_margin="@dimen/margin_template_question"
             android:background="@drawable/round_corners"
-            android:elevation="30dp"
+            android:elevation="@dimen/elevation_buttons"
             android:gravity="center"
             android:orientation="vertical"
             android:visibility="visible"
@@ -226,7 +226,7 @@
                 android:id="@+id/text_current_question"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_marginBottom="50dp"
+                android:layout_marginBottom="@dimen/margin_text_question_bottom"
                 android:layout_weight="0.25"
                 android:gravity="center"
                 android:text="@string/what_s_the_capital_of_venezuela"
@@ -272,7 +272,7 @@
             android:layout_height="match_parent"
             android:layout_margin="24dp"
             android:background="@drawable/round_corners"
-            android:elevation="30dp"
+            android:elevation="@dimen/elevation_buttons"
             android:gravity="center"
             android:orientation="vertical"
             android:visibility="gone"
@@ -283,7 +283,7 @@
                 android:id="@+id/text_question2"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_marginBottom="50dp"
+                android:layout_marginBottom="@dimen/margin_text_question_bottom"
                 android:layout_weight="0.25"
                 android:gravity="center"
                 android:text="@string/q2_select_all_nation_capitals"
@@ -305,9 +305,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="24dp"
-                    android:paddingLeft="16dp"
+                    android:paddingEnd="@dimen/padding_checkbox_rigt"
+                    android:paddingStart="@dimen/padding_checkbox_left"
                     android:text="@string/choice21_sao_paolo"
-                    android:textSize="16sp"
+                    android:textSize="@dimen/textsize_checkbox"
                     android:textStyle="italic"
                     tools:ignore="RtlSymmetry" />
 
@@ -315,9 +316,10 @@
                     android:id="@+id/answer2_barcelona"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingLeft="16dp"
+                    android:paddingEnd="@dimen/padding_checkbox_rigt"
+                    android:paddingStart="@dimen/padding_checkbox_left"
                     android:text="@string/choice22_barcelona"
-                    android:textSize="16sp"
+                    android:textSize="@dimen/textsize_checkbox"
                     android:textStyle="italic"
                     tools:ignore="RtlSymmetry" />
 
@@ -325,20 +327,20 @@
                     android:id="@+id/answer2_ottawa"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingLeft="16dp"
-                    android:paddingRight="1dp"
+                    android:paddingEnd="@dimen/padding_checkbox_rigt"
+                    android:paddingStart="@dimen/padding_checkbox_left"
                     android:text="@string/choice23_ottawa"
-                    android:textSize="16sp"
+                    android:textSize="@dimen/textsize_checkbox"
                     android:textStyle="italic" />
 
                 <CheckBox
                     android:id="@+id/answer2_rome"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingLeft="16dp"
-                    android:paddingRight="1dp"
+                    android:paddingEnd="@dimen/padding_checkbox_rigt"
+                    android:paddingStart="@dimen/padding_checkbox_left"
                     android:text="@string/choice24_rome"
-                    android:textSize="16sp"
+                    android:textSize="@dimen/textsize_checkbox"
                     android:textStyle="italic" />
 
             </LinearLayout>
@@ -352,7 +354,7 @@
             android:layout_height="match_parent"
             android:layout_margin="24dp"
             android:background="@drawable/round_corners"
-            android:elevation="30dp"
+            android:elevation="@dimen/elevation_buttons"
             android:gravity="center"
             android:orientation="vertical"
             android:visibility="gone"
@@ -363,7 +365,7 @@
                 android:id="@+id/text_question3"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_marginBottom="50dp"
+                android:layout_marginBottom="@dimen/margin_text_question_bottom"
                 android:layout_weight="0.25"
                 android:gravity="center"
                 android:text="@string/q3_name_a_capital_in_africa"
@@ -401,7 +403,7 @@
             android:layout_height="match_parent"
             android:layout_margin="24dp"
             android:background="@drawable/round_corners"
-            android:elevation="30dp"
+            android:elevation="@dimen/elevation_buttons"
             android:gravity="center"
             android:orientation="vertical"
             android:visibility="gone"
@@ -412,7 +414,7 @@
                 android:id="@+id/text_question4"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_marginBottom="50dp"
+                android:layout_marginBottom="@dimen/margin_text_question_bottom"
                 android:layout_weight="0.25"
                 android:gravity="center"
                 android:text="@string/q4_which_one_of_these_cities_is_a_nation_capital"
@@ -434,8 +436,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:onClick="onRb4Clicked"
-                    android:paddingEnd="1dp"
-                    android:paddingStart="16dp"
+                    android:paddingEnd="@dimen/padding_checkbox_rigt"
+                    android:paddingStart="@dimen/padding_checkbox_left"
                     android:text="@string/choice41_kathmandu" />
 
                 <RadioButton
@@ -443,8 +445,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:onClick="onRb4Clicked"
-                    android:paddingEnd="1dp"
-                    android:paddingStart="16dp"
+                    android:paddingEnd="@dimen/padding_checkbox_rigt"
+                    android:paddingStart="@dimen/padding_checkbox_left"
                     android:text="@string/choice42_kyoto" />
 
                 <RadioButton
@@ -452,8 +454,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:onClick="onRb4Clicked"
-                    android:paddingEnd="1dp"
-                    android:paddingStart="16dp"
+                    android:paddingEnd="@dimen/padding_checkbox_rigt"
+                    android:paddingStart="@dimen/padding_checkbox_left"
                     android:text="@string/choice43_amara" />
 
             </RadioGroup>
@@ -467,7 +469,7 @@
             android:layout_height="match_parent"
             android:layout_margin="24dp"
             android:background="@drawable/round_corners"
-            android:elevation="30dp"
+            android:elevation="@dimen/elevation_buttons"
             android:gravity="center"
             android:orientation="vertical"
             android:visibility="gone"
@@ -478,7 +480,7 @@
                 android:id="@+id/text_question5"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_marginBottom="50dp"
+                android:layout_marginBottom="@dimen/margin_text_question_bottom"
                 android:layout_weight="0.25"
                 android:gravity="center"
                 android:text="@string/q5_damascus_is_the_capital_of_turkey"
@@ -503,10 +505,10 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="24dp"
                         android:onClick="onRb5Clicked"
-                        android:paddingEnd="1dp"
-                        android:paddingStart="16dp"
+                        android:paddingEnd="@dimen/padding_checkbox_rigt"
+                        android:paddingStart="@dimen/padding_checkbox_left"
                         android:text="@string/choice51_true"
-                        android:textSize="16sp"
+                        android:textSize="@dimen/textsize_checkbox"
                         android:textStyle="italic" />
 
                     <RadioButton
@@ -514,10 +516,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:onClick="onRb5Clicked"
-                        android:paddingEnd="1dp"
-                        android:paddingStart="16dp"
+                        android:paddingEnd="@dimen/padding_checkbox_rigt"
+                        android:paddingStart="@dimen/padding_checkbox_left"
                         android:text="@string/choice52_false"
-                        android:textSize="16sp"
+                        android:textSize="@dimen/textsize_checkbox"
                         android:textStyle="italic" />
 
 
@@ -531,7 +533,7 @@
             android:layout_height="match_parent"
             android:layout_margin="24dp"
             android:background="@drawable/round_corners"
-            android:elevation="30dp"
+            android:elevation="@dimen/elevation_buttons"
             android:gravity="center"
             android:orientation="vertical"
             android:visibility="gone"
@@ -542,7 +544,7 @@
                 android:id="@+id/text_question6"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_marginBottom="50dp"
+                android:layout_marginBottom="@dimen/margin_text_question_bottom"
                 android:layout_weight="0.25"
                 android:gravity="center"
                 android:text="@string/q6_which_of_these_cities_can_you_find_in_south_america"
@@ -563,40 +565,40 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="24dp"
-                    android:paddingEnd="1dp"
-                    android:paddingStart="16dp"
+                    android:paddingEnd="@dimen/padding_checkbox_rigt"
+                    android:paddingStart="@dimen/padding_checkbox_left"
                     android:text="@string/choice61_porto_novo"
-                    android:textSize="16sp"
+                    android:textSize="@dimen/textsize_checkbox"
                     android:textStyle="italic" />
 
                 <CheckBox
                     android:id="@+id/answer6_lisbon_in_sa"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingEnd="1dp"
-                    android:paddingStart="16dp"
+                    android:paddingEnd="@dimen/padding_checkbox_rigt"
+                    android:paddingStart="@dimen/padding_checkbox_left"
                     android:text="@string/choice62_santiago"
-                    android:textSize="16sp"
+                    android:textSize="@dimen/textsize_checkbox"
                     android:textStyle="italic" />
 
                 <CheckBox
                     android:id="@+id/answer6_lima_in_sa"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingEnd="1dp"
-                    android:paddingStart="16dp"
+                    android:paddingEnd="@dimen/padding_checkbox_rigt"
+                    android:paddingStart="@dimen/padding_checkbox_left"
                     android:text="@string/choice63_lima"
-                    android:textSize="16sp"
+                    android:textSize="@dimen/textsize_checkbox"
                     android:textStyle="italic" />
 
                 <CheckBox
                     android:id="@+id/answer6_georgetown_in_sa"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingEnd="1dp"
-                    android:paddingStart="16dp"
+                    android:paddingEnd="@dimen/padding_checkbox_rigt"
+                    android:paddingStart="@dimen/padding_checkbox_left"
                     android:text="@string/choice64_georgetown"
-                    android:textSize="16sp"
+                    android:textSize="@dimen/textsize_checkbox"
                     android:textStyle="italic" />
 
             </LinearLayout>
@@ -610,10 +612,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginBottom="24dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginBottom="@dimen/margin_submit_reset_button"
+            android:layout_marginTop="@dimen/margin_submit_reset_button"
             android:background="@drawable/round_corners"
-            android:elevation="30dp"
+            android:elevation="@dimen/elevation_buttons"
             android:onClick="submit"
             android:text="@string/submit_button_label"
             android:textAlignment="center"
@@ -625,10 +627,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginBottom="24dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginBottom="@dimen/margin_submit_reset_button"
+            android:layout_marginTop="@dimen/margin_submit_reset_button"
             android:background="@drawable/round_corners"
-            android:elevation="30dp"
+            android:elevation="@dimen/elevation_buttons"
             android:onClick="reset"
             android:text="@string/reset_button_label"
             android:textColor="@color/colorAccent"
