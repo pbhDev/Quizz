@@ -26,32 +26,35 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    int currentQuestion = 1;
-    String _currentQuestion = Integer.toString(currentQuestion);
-    LinearLayout layout_questions;
-    RelativeLayout mIntro;
-    LinearLayout previous_card_question;
-    LinearLayout current_card_question;
-    Button submit_button;
-    Button reset_button;
-    TextView counter;
-    int scoreThisQuestion = 0;
-    String maxScorePerQuestion = "5";
-    String radioGroupAnswer;
-    String yourAnswer = "";
+    private int currentQuestion = 1;
+    private String _currentQuestion = Integer.toString(currentQuestion);
+    private LinearLayout layout_questions;
+    private RelativeLayout mIntro;
+    private LinearLayout previous_card_question;
+    private LinearLayout current_card_question;
+    private Button submit_button;
+    private Button reset_button;
+    private TextView counter;
+    private int scoreThisQuestion = 0;
+    private final String maxScorePerQuestion = "5";
+    private String radioGroupAnswer;
+    private String yourAnswer;
 
-    TextView viewScore;
+    private TextView viewScore;
 
-    int runningScore = 0;
-    String _runningScore = "0";
+    private int runningScore = 0;
+    private String _runningScore = "0";
 
-    int answered = 0; //if a box is checked or unchecked, updates to +1 or -1 respectively.
+    private int answered = 0; //if a box is checked or unchecked, updates to +1 or -1 respectively.
     //Submit button displays a toast if this variable = 0 inviting the user to provide answer.
 
-    CharSequence text_toast = "";
+    private CharSequence text_toast = "";
 
-    String name; //player's name
-    Fade mFade; //same kind of animation for all questions
+    private String name; //player's name
+    private Fade mFade; //same kind of animation for all questions
+    private boolean isAnswerCorrect;
+    private String correctAnswer;
+    private String announcement;
 
 
     @Override
@@ -108,9 +111,9 @@ public class MainActivity extends AppCompatActivity {
 
 
     //Prepares and displays the toast, also updates question count
-    public void moveToNext(Boolean isAnswerCorrect, String announcement,
-                           String yourAnswer, String correctAnswer, int scoreForThisQuestion,
-                           ViewGroup layout_questions, View current_card_question) {
+    private void moveToNext(Boolean isAnswerCorrect, String announcement,
+                            String yourAnswer, String correctAnswer, int scoreForThisQuestion,
+                            ViewGroup layout_questions, View current_card_question) {
 
         LayoutInflater inflater = getLayoutInflater();
         View layout = inflater.inflate(R.layout.custom_toast,
@@ -118,7 +121,7 @@ public class MainActivity extends AppCompatActivity {
 
         TextView text = layout.findViewById(R.id.text);
 
-        //prepare the message that will in the toast
+        //prepare the message that will show in the toast
         if (isAnswerCorrect) {
             text_toast = "Question " + currentQuestion + " Score: "
                     + Integer.toString(scoreForThisQuestion) + "/" + maxScorePerQuestion + "\n"
@@ -138,7 +141,7 @@ public class MainActivity extends AppCompatActivity {
         Toast toast = new Toast(getApplicationContext());
         toast.setDuration(Toast.LENGTH_LONG);
 
-        //this tells where the toast will pop up
+        //this tells where the toast will pop up-It will fill the screen.
         toast.setGravity(Gravity.FILL, 0, 0);
 
         toast.setView(layout);
@@ -167,7 +170,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public void updateScoreTotal(int scoreThisQuestion) {
+    private void updateScoreTotal(int scoreThisQuestion) {
 
         //update score
         runningScore += scoreThisQuestion;
@@ -184,7 +187,7 @@ public class MainActivity extends AppCompatActivity {
 
         switch (currentQuestion) {
 
-            case 1:
+            case 1: {
                 if (answered == 0) {
 
                     Toast.makeText(getApplicationContext(), "You didn't answer!",
@@ -205,36 +208,34 @@ public class MainActivity extends AppCompatActivity {
                     current_card_question = findViewById(R.id.text_card_q2);
 
 
-                    boolean isAnswerCorrect = radioGroupAnswer.equalsIgnoreCase("Caracas");
-                    String correctAnswer = "Caracas";
+                    isAnswerCorrect = radioGroupAnswer.equalsIgnoreCase("Caracas");
+                    correctAnswer = "Caracas";
 
                     if (isAnswerCorrect) {
 
                         scoreThisQuestion += 5;
-                        moveToNext(true,
-                                "You rock!",
-                                radioGroupAnswer, correctAnswer,
-                                scoreThisQuestion, layout_questions, current_card_question);
+                        announcement = "You rock!";
+
+
+                        answered = 0;
 
                     } else {
 
-                        moveToNext(false,
-                                "Nice try!",
-                                radioGroupAnswer, correctAnswer, scoreThisQuestion,
-                                layout_questions, current_card_question);
-
-
+                        announcement = "Nice try!";
                     }
+
+                    moveToNext(isAnswerCorrect,
+                            announcement,
+                            radioGroupAnswer, correctAnswer,
+                            scoreThisQuestion, layout_questions, current_card_question);
 
                     //update score
                     updateScoreTotal(scoreThisQuestion);
-                    answered = 0;
-
-
-                    break;
 
 
                 }
+                break;
+            }
 
             case 2: {
                 //Question 2 : Select all nation capitals
@@ -254,68 +255,55 @@ public class MainActivity extends AppCompatActivity {
                 CheckBox ottawa = findViewById(R.id.answer2_ottawa);
                 CheckBox rome = findViewById(R.id.answer2_rome);
 
-                String announcement = "";
-                String correctAnswer = "Ottawa\nRome\n";
+
+                correctAnswer = "Ottawa\nRome\n";
 
                 yourAnswer = "";
+                answered = 0;
 
                 if (sao_paolo.isChecked()) {
                     yourAnswer += (sao_paolo.getText().toString() + "\n");
 
                     answered = 1;
 
-                } else {
-                    if (answered > 0)
-                        answered -= 1;
                 }
 
                 if (barcelona.isChecked()) {
                     yourAnswer += (barcelona.getText().toString() + "\n");
                     answered = 1;
 
-                } else {
-                    if (answered > 0)
-                        answered -= 1;
                 }
 
                 if (ottawa.isChecked()) {
-                    answered++;
+                    answered += 3;
                     yourAnswer += (ottawa.getText().toString() + "\n");
 
-                    answered = 1;
 
-                } else {
-                    if (answered > 0)
-                        answered -= 1;
                 }
 
                 if (rome.isChecked()) {
-                    answered++;
+                    answered += 3;
                     yourAnswer += (rome.getText().toString() + "\n");
 
 
-                } else {
-                    if (answered > 0)
-                        answered -= 1;
                 }
 
-                boolean isAnswerCorrect = false;
 
-                if (answered == 1) {
+                if (answered >= 3 && answered <= 4) {
 
-                    announcement = "Good job!";
+                    announcement = "Good job! You got one correct";
                     scoreThisQuestion = 2;
                     isAnswerCorrect = false; //to triggers "show" correct answer
 
-                } else if (answered == 2) {
+                } else if (answered == 6) {
 
                     announcement = "You rock!!!";
                     scoreThisQuestion = 5;
                     isAnswerCorrect = true;
-                } else if (answered == 0) {
+                } else {
 
-                    announcement = "That was tricky";
-                    scoreThisQuestion = 5;
+                    announcement = "Nice try!";
+                    scoreThisQuestion = 0;
                     isAnswerCorrect = false;
                 }
 
@@ -339,10 +327,13 @@ public class MainActivity extends AppCompatActivity {
                             yourAnswer, correctAnswer,
                             scoreThisQuestion, layout_questions, current_card_question);
 
+
+                    //update score
+                    updateScoreTotal(scoreThisQuestion);
+
+
                 }
 
-                //update score
-                updateScoreTotal(scoreThisQuestion);
 
                 answered = 0;
 
@@ -353,75 +344,60 @@ public class MainActivity extends AppCompatActivity {
             }
 
             case 3: {
-                //Question : name_a_capital_in_africa
-                //Answer : pick one from the list below
+                {
+                    //Question : name_a_capital_in_africa
+                    //Answer : pick one from the list below
 
 
-                //reset checkboxes or radio buttons
-                CheckBox sao_paolo = findViewById(R.id.answer2_sao_paolo);
-                sao_paolo.setChecked(false);
-                CheckBox barcelona = findViewById(R.id.answer2_barcelona);
-                barcelona.setChecked(false);
-                CheckBox ottawa = findViewById(R.id.answer2_ottawa);
-                ottawa.setChecked(false);
-                CheckBox rome = findViewById(R.id.answer2_rome);
-                rome.setChecked(false);
+                    //reset checkboxes or radio buttons
+                    CheckBox sao_paolo = findViewById(R.id.answer2_sao_paolo);
+                    sao_paolo.setChecked(false);
+                    CheckBox barcelona = findViewById(R.id.answer2_barcelona);
+                    barcelona.setChecked(false);
+                    CheckBox ottawa = findViewById(R.id.answer2_ottawa);
+                    ottawa.setChecked(false);
+                    CheckBox rome = findViewById(R.id.answer2_rome);
+                    rome.setChecked(false);
 
-                hideKeypad();
+                    hideKeypad(); //does exactly what it says
 
-                scoreThisQuestion = 0;
-                yourAnswer = "";
-
-                String correctAnswer = "Google it :-)";
-
-
-                counter.setText(_currentQuestion);
-
-                EditText editText_answer3 = findViewById(R.id.answer3_editText_cap_in_africa);
-                yourAnswer += editText_answer3.getText().toString();
-
-                List<String> capitals = Arrays.asList("algiers", "luanda", "porto-novo", "gaborone",
-                        "ouagadougou", "bujumbura", "praia", "yaounde", "bangui", "n'djamena",
-                        "moroni", "kinshasa", "brazzaville", "yamoussoukro", "djibouti", "cairo",
-                        "malabo", "asmara", "addis ababa", "libreville", "banjul", "accra",
-                        "conakry", "bissau", "nairobi", "maseru", "monrovia", "tripoli",
-                        "antananarivo", "lilongwe", "bamako", "nouakchott", "port louis", "rabat",
-                        "maputo", "windhoek", "niamey", "abuja", "kigali", "sao tome", "dakar",
-                        "victoria", "freetown", "mogadishu", "pretoria", "juba", "khartoum",
-                        "mbabane", "dodoma", "lome", "tunis", "kampala", "lusaka", "harare",
-                        "porto novo", "ndjamena");
-
-
-                boolean isAnswerCorrect = false;
-
-                if (yourAnswer.equals("")) {
-                    answered = 0;
-                } else {
-                    isAnswerCorrect = capitals.contains(yourAnswer.toLowerCase());
-                    answered = 1;
-
-                }
-
-                if (isAnswerCorrect) {
-
-                    scoreThisQuestion = 5;
-
-                    moveToNext(true,
-                            "Good job!",
-                            yourAnswer, correctAnswer,
-                            scoreThisQuestion, layout_questions, current_card_question);
-
-
-                } else {
-
-                    // of course in this case isAnswerCorrect = false;
                     scoreThisQuestion = 0;
+                    yourAnswer = "";
 
-                    if (answered == 0) {
+                    correctAnswer = "Google it :-)";
 
-                        Toast.makeText(getApplicationContext(), "You didn't answer!",
-                                Toast.LENGTH_SHORT).show();
+
+                    counter.setText(_currentQuestion);
+
+                    EditText editText_answer3 = findViewById(R.id.answer3_editText_cap_in_africa);
+                    yourAnswer += editText_answer3.getText().toString();
+
+                    List<String> capitals = Arrays.asList("algiers", "luanda", "porto-novo", "gaborone",
+                            "ouagadougou", "bujumbura", "praia", "yaounde", "bangui", "n'djamena",
+                            "moroni", "kinshasa", "brazzaville", "yamoussoukro", "djibouti", "cairo",
+                            "malabo", "asmara", "addis ababa", "libreville", "banjul", "accra",
+                            "conakry", "bissau", "nairobi", "maseru", "monrovia", "tripoli",
+                            "antananarivo", "lilongwe", "bamako", "nouakchott", "port louis", "rabat",
+                            "maputo", "windhoek", "niamey", "abuja", "kigali", "sao tome", "dakar",
+                            "victoria", "freetown", "mogadishu", "pretoria", "juba", "khartoum",
+                            "mbabane", "dodoma", "lome", "tunis", "kampala", "lusaka", "harare",
+                            "porto novo", "ndjamena");
+
+
+                    isAnswerCorrect = capitals.contains(yourAnswer.toLowerCase());
+
+                    if (yourAnswer.equals("")) {
+                        answered = 0;
                     } else {
+
+                        answered = 1;
+
+                    }
+
+                    if (isAnswerCorrect) {
+
+                        scoreThisQuestion = 5;
+                        announcement = "Good job!";
 
                         previous_card_question = findViewById(R.id.text_card_q3);
                         previous_card_question.setVisibility(View.GONE);
@@ -429,28 +405,55 @@ public class MainActivity extends AppCompatActivity {
                         //find next question
                         current_card_question = findViewById(R.id.text_card_q4);
 
-                        moveToNext(false,
-                                "Mmm...wrong answer",
-                                yourAnswer, correctAnswer,
-                                scoreThisQuestion, layout_questions, current_card_question);
+                        //update score
+                        updateScoreTotal(scoreThisQuestion);
+
+                        answered = 0;
+
+
+                    } else {
+
+                        // of course in this case isAnswerCorrect = false;
+                        scoreThisQuestion = 0;
+
+                        if (answered == 0) {
+
+                            Toast.makeText(getApplicationContext(), "You didn't answer!",
+                                    Toast.LENGTH_SHORT).show();
+                        } else {
+
+                            announcement = "Mmm...wrong answer";
+
+                            previous_card_question = findViewById(R.id.text_card_q3);
+                            previous_card_question.setVisibility(View.GONE);
+
+                            //find next question
+                            current_card_question = findViewById(R.id.text_card_q4);
+
+                            //update score
+                            updateScoreTotal(scoreThisQuestion);
+
+                            answered = 0;
+
+
+                        }
+
 
                     }
 
-
+                    moveToNext(isAnswerCorrect,
+                            announcement,
+                            yourAnswer, correctAnswer,
+                            scoreThisQuestion, layout_questions, current_card_question);
                 }
 
-
-                //update score
-                updateScoreTotal(scoreThisQuestion);
-
-                answered = 0;
 
                 break;
 
 
             }
 
-            case 4:
+            case 4: {
                 if (answered == 0) {
 
                     Toast.makeText(getApplicationContext(), "You didn't answer!",
@@ -463,7 +466,7 @@ public class MainActivity extends AppCompatActivity {
 
                     scoreThisQuestion = 0;
                     yourAnswer = "";
-                    boolean isAnswerCorrect;
+
                     String correctAnswer = "Kathmandu";
 
                     previous_card_question = findViewById(R.id.text_card_q4);
@@ -485,35 +488,41 @@ public class MainActivity extends AppCompatActivity {
 
                     if (isAnswerCorrect) {
 
+                        announcement = "You rock!";
+
                         scoreThisQuestion += 5;
-                        moveToNext(true,
-                                "You rock!",
-                                radioGroupAnswer, correctAnswer,
-                                scoreThisQuestion, layout_questions, current_card_question);
+
+
+                        //update score
+                        updateScoreTotal(scoreThisQuestion);
+
+                        answered = 0;
 
                     } else {
 
+                        announcement = "Nice try!";
 
-                        moveToNext(false,
-                                "Nice try!",
-                                radioGroupAnswer, correctAnswer, scoreThisQuestion,
-                                layout_questions, current_card_question);
+                        //update score
+                        updateScoreTotal(scoreThisQuestion);
+
+                        answered = 0;
 
 
                     }
 
-                    //update score
-                    updateScoreTotal(scoreThisQuestion);
-
-                    answered = 0;
-
-
-                    break;
-
-
+                    moveToNext(isAnswerCorrect,
+                            announcement,
+                            radioGroupAnswer, correctAnswer,
+                            scoreThisQuestion, layout_questions, current_card_question);
                 }
 
-            case 5:
+
+                break;
+
+
+            }
+
+            case 5: {
                 if (answered == 0) {
 
                     Toast.makeText(getApplicationContext(), "You didn't answer!",
@@ -526,8 +535,8 @@ public class MainActivity extends AppCompatActivity {
                     scoreThisQuestion = 0;
 
                     yourAnswer = "";
-                    boolean isAnswerCorrect;
-                    String correctAnswer = "True";
+
+                    correctAnswer = "True";
 
 
                     previous_card_question = findViewById(R.id.text_card_q5);
@@ -537,33 +546,36 @@ public class MainActivity extends AppCompatActivity {
                     //find next question
                     current_card_question = findViewById(R.id.text_card_q6);
 
-
+                    //clear previous answer
                     RadioGroup rd_buttons4 = findViewById(R.id.rg_question4);
                     rd_buttons4.clearCheck();
 
-
+                    //update the question counter
                     counter.setText(_currentQuestion);
 
+                    //compare entry with known answer, return a boolean value
                     isAnswerCorrect = radioGroupAnswer.equalsIgnoreCase(correctAnswer);
 
                     if (isAnswerCorrect) {
 
+                        announcement = "You rock!";
+
                         scoreThisQuestion += 5;
-                        moveToNext(true,
-                                "You rock!",
-                                radioGroupAnswer, correctAnswer,
-                                scoreThisQuestion, layout_questions, current_card_question);
+
+                        answered = 0;
 
                     } else {
 
+                        announcement = "Nice try!";
 
-                        moveToNext(false,
-                                "Nice try!",
-                                radioGroupAnswer, correctAnswer, scoreThisQuestion,
-                                layout_questions, current_card_question);
-
+                        answered = 0;
 
                     }
+
+                    moveToNext(isAnswerCorrect,
+                            announcement,
+                            radioGroupAnswer, correctAnswer,
+                            scoreThisQuestion, layout_questions, current_card_question);
 
 
                     //update score
@@ -572,10 +584,9 @@ public class MainActivity extends AppCompatActivity {
                     answered = 0;
 
 
-                    break;
-
-
                 }
+                break;
+            }
 
             case 6: {
                 //Question 6: "Which of these cities can you find in South America?"
@@ -595,8 +606,7 @@ public class MainActivity extends AppCompatActivity {
                 CheckBox lima = findViewById(R.id.answer6_lima_in_sa);
                 CheckBox georgetown = findViewById(R.id.answer6_georgetown_in_sa);
 
-                String announcement = "";
-                String correctAnswer = "Lima\nGeorgetown\n";
+                correctAnswer = "Lima\nGeorgetown\n";
 
                 yourAnswer = "";
 
@@ -604,9 +614,6 @@ public class MainActivity extends AppCompatActivity {
                     yourAnswer += (porto_novo.getText().toString() + "\n");
                     answered = 1;
 
-                } else {
-
-                    answered = 0;
                 }
 
                 if (lisbon.isChecked()) {
@@ -614,45 +621,35 @@ public class MainActivity extends AppCompatActivity {
 
                     answered = 1;
 
-                } else {
-
-                    answered = 0;
                 }
 
                 if (lima.isChecked()) {
-                    answered++;
+                    answered += 3;
                     yourAnswer += (lima.getText().toString() + "\n");
 
 
-                } else {
-
-                    answered = 0;
                 }
 
                 if (georgetown.isChecked()) {
-                    answered++;
+                    answered += 3;
                     yourAnswer += (georgetown.getText().toString() + "\n");
 
 
-                } else {
-
-                    answered = 0;
                 }
 
-                boolean isAnswerCorrect = false;
 
-                if (answered == 1) {
+                if (answered >= 3 && answered <= 4) {
 
                     announcement = "You got one correct!";
                     scoreThisQuestion = 2;
                     isAnswerCorrect = false; //triggers to display the correct answer
 
-                } else if (answered == 2) {
+                } else if (answered == 6) {
 
                     announcement = "You rock!!!";
                     scoreThisQuestion = 5;
                     isAnswerCorrect = true;
-                } else if (answered == 0) {
+                } else {
 
                     announcement = "...not really";
                     scoreThisQuestion = 5;
@@ -845,7 +842,7 @@ public class MainActivity extends AppCompatActivity {
         previous_card_question = findViewById(R.id.text_card_q6);
         previous_card_question.setVisibility(View.GONE);
 
-        //
+        //clear answer in question 6
         CheckBox porto_novo = findViewById(R.id.answer6_porto_novo_in_sa);
         porto_novo.setChecked(false);
         CheckBox lisbon = findViewById(R.id.answer6_lisbon_in_sa);
@@ -855,6 +852,7 @@ public class MainActivity extends AppCompatActivity {
         CheckBox georgetown = findViewById(R.id.answer6_georgetown_in_sa);
         georgetown.setChecked(false);
 
+        //Set current question to question 1
         current_card_question = findViewById(R.id.text_card_q1);
         current_card_question.setVisibility(View.VISIBLE);
 
