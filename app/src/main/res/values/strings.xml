@@ -38,4 +38,6 @@
     <string name="choice64_georgetown">Georgetown</string>
     <string name="submit_button_label">SUBMIT</string>
     <string name="reset_button_label">RESET</string>
+    <string name="text_initial_toast">you won</string>
+    <string name="description_blue_globe_2">blue_globe_2</string>
 </resources>
