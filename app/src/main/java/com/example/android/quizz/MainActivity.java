@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
     private int currentQuestion = 1;
     private String _currentQuestion = Integer.toString(currentQuestion);
     private LinearLayout layout_questions;
-    private RelativeLayout mIntro;
+    private LinearLayout mIntro;
     private LinearLayout previous_card_question;
     private LinearLayout current_card_question;
     private Button submit_button;
@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
     public void startQuiz(View view) {
 
         mIntro = findViewById(R.id.layout_intro);
-        mIntro.setVisibility(View.INVISIBLE);
+        mIntro.setVisibility(View.GONE);
         layout_questions = findViewById(R.id.layout_questions);
 
         EditText name_player = findViewById(R.id.name_field);
@@ -260,52 +260,65 @@ public class MainActivity extends AppCompatActivity {
 
                 yourAnswer = "";
                 answered = 0;
+                if (!sao_paolo.isChecked() && !barcelona.isChecked() &&
+                        ottawa.isChecked() && rome.isChecked() ) {
 
-                if (sao_paolo.isChecked()) {
-                    yourAnswer += (sao_paolo.getText().toString() + "\n");
+                    answered += 6;
 
-                    answered = 1;
-
-                }
-
-                if (barcelona.isChecked()) {
-                    yourAnswer += (barcelona.getText().toString() + "\n");
-                    answered = 1;
-
-                }
-
-                if (ottawa.isChecked()) {
-                    answered += 3;
-                    yourAnswer += (ottawa.getText().toString() + "\n");
-
-
-                }
-
-                if (rome.isChecked()) {
-                    answered += 3;
-                    yourAnswer += (rome.getText().toString() + "\n");
-
-
-                }
-
-
-                if (answered >= 3 && answered <= 4) {
-
-                    announcement = "Good job! You got one correct";
-                    scoreThisQuestion = 2;
-                    isAnswerCorrect = false; //to triggers "show" correct answer
-
-                } else if (answered == 6) {
+                    //gets the player's  answer to be displayed in the toast
+                    yourAnswer += (rome.getText().toString() + "\n" + (ottawa.getText().toString() + "\n"));
 
                     announcement = "You rock!!!";
                     scoreThisQuestion = 5;
                     isAnswerCorrect = true;
-                } else {
 
-                    announcement = "Nice try!";
-                    scoreThisQuestion = 0;
-                    isAnswerCorrect = false;
+
+
+                }else {
+
+                    //each "if" statement gets the player's  answer to be displayed in the toast
+                    if (sao_paolo.isChecked()) {
+                        yourAnswer += (sao_paolo.getText().toString() + "\n");
+
+                        answered = 1;
+
+                    }
+
+                    if (barcelona.isChecked()) {
+                        yourAnswer += (barcelona.getText().toString() + "\n");
+                        answered = 1;
+
+                    }
+
+                    if (ottawa.isChecked()) {
+                        answered += 3;
+                        yourAnswer += (ottawa.getText().toString() + "\n");
+
+
+                    }
+
+                    if (rome.isChecked()) {
+                        answered += 3;
+                        yourAnswer += (rome.getText().toString() + "\n");
+
+
+                    }
+
+                    if (answered == 3) {
+
+                        announcement = "You got only one correct.";
+                        scoreThisQuestion = 0;
+                        isAnswerCorrect = false; //to triggers "show" correct answer
+
+                    } else if ((answered >3 && answered !=6) || ( answered>=1 && answered <3)) {
+
+                        announcement = "Nice try!";
+                        scoreThisQuestion = 0;
+                        isAnswerCorrect = false;
+                    }
                 }
+
+
 
                 if (yourAnswer.equals("")) {
 
@@ -370,7 +383,7 @@ public class MainActivity extends AppCompatActivity {
                     counter.setText(_currentQuestion);
 
                     EditText editText_answer3 = findViewById(R.id.answer3_editText_cap_in_africa);
-                    yourAnswer += editText_answer3.getText().toString();
+                    yourAnswer = editText_answer3.getText().toString();
 
                     List<String> capitals = Arrays.asList("algiers", "luanda", "porto-novo", "gaborone",
                             "ouagadougou", "bujumbura", "praia", "yaounde", "bangui", "n'djamena",
@@ -386,7 +399,7 @@ public class MainActivity extends AppCompatActivity {
 
                     isAnswerCorrect = capitals.contains(yourAnswer.toLowerCase());
 
-                    if (yourAnswer.equals("")) {
+                    if (yourAnswer.isEmpty()) {
                         answered = 0;
                     } else {
 
@@ -407,6 +420,11 @@ public class MainActivity extends AppCompatActivity {
 
                         //update score
                         updateScoreTotal(scoreThisQuestion);
+
+                        moveToNext(isAnswerCorrect,
+                                announcement,
+                                yourAnswer, correctAnswer,
+                                scoreThisQuestion, layout_questions, current_card_question);
 
                         answered = 0;
 
@@ -435,16 +453,18 @@ public class MainActivity extends AppCompatActivity {
 
                             answered = 0;
 
+                            moveToNext(isAnswerCorrect,
+                                    announcement,
+                                    yourAnswer, correctAnswer,
+                                    scoreThisQuestion, layout_questions, current_card_question);
+
 
                         }
 
 
                     }
 
-                    moveToNext(isAnswerCorrect,
-                            announcement,
-                            yourAnswer, correctAnswer,
-                            scoreThisQuestion, layout_questions, current_card_question);
+
                 }
 
 
@@ -465,12 +485,12 @@ public class MainActivity extends AppCompatActivity {
                     //Answer 4: "Kathmandu"
 
                     scoreThisQuestion = 0;
-                    yourAnswer = "";
 
                     String correctAnswer = "Kathmandu";
 
                     previous_card_question = findViewById(R.id.text_card_q4);
                     previous_card_question.setVisibility(View.GONE);
+                    yourAnswer = "";
 
                     //find next question
                     current_card_question = findViewById(R.id.text_card_q5);
@@ -589,7 +609,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             case 6: {
-                //Question 6: "Which of these cities can you find in South America?"
+                //Question 6: "Which 2 of these cities can you find in South America?"
                 //Answer 6: "Lima", "Georgetown"
 
                 scoreThisQuestion = 0;
@@ -610,51 +630,57 @@ public class MainActivity extends AppCompatActivity {
 
                 yourAnswer = "";
 
-                if (porto_novo.isChecked()) {
-                    yourAnswer += (porto_novo.getText().toString() + "\n");
-                    answered = 1;
-
-                }
-
-                if (lisbon.isChecked()) {
-                    yourAnswer += (lisbon.getText().toString() + "\n");
-
-                    answered = 1;
-
-                }
-
-                if (lima.isChecked()) {
-                    answered += 3;
-                    yourAnswer += (lima.getText().toString() + "\n");
-
-
-                }
-
-                if (georgetown.isChecked()) {
-                    answered += 3;
-                    yourAnswer += (georgetown.getText().toString() + "\n");
-
-
-                }
-
-
-                if (answered >= 3 && answered <= 4) {
-
-                    announcement = "You got one correct!";
-                    scoreThisQuestion = 2;
-                    isAnswerCorrect = false; //triggers to display the correct answer
-
-                } else if (answered == 6) {
+                if(!porto_novo.isChecked() && !lisbon.isChecked() &&
+                        lima.isChecked() && georgetown.isChecked() ){
+                    answered += 6;
+                    yourAnswer += correctAnswer;
 
                     announcement = "You rock!!!";
                     scoreThisQuestion = 5;
                     isAnswerCorrect = true;
-                } else {
 
-                    announcement = "...not really";
-                    scoreThisQuestion = 5;
-                    isAnswerCorrect = false;
+                }else {
+
+                    //each "if" statement gets the player's  answer to be displayed in the toast
+                    if (lima.isChecked()) {
+                        answered = 3;
+                        yourAnswer += (lima.getText().toString() + "\n");
+                    }
+
+                    if (georgetown.isChecked()) {
+                        answered = 3;
+                        yourAnswer += (georgetown.getText().toString() + "\n");
+                    }
+
+                    if (porto_novo.isChecked()) {
+                        yourAnswer += (porto_novo.getText().toString() + "\n");
+                        answered = 1;
+
+                    }
+
+                    if (lisbon.isChecked()) {
+                        yourAnswer += (lisbon.getText().toString() + "\n");
+
+                        answered = 1;
+
+                    }
+
+                    if (answered==3) {
+
+                        announcement = "You got only correct";
+                        scoreThisQuestion = 0;
+                        isAnswerCorrect = false; //triggers to display the correct answer
+
+                    }  else if((answered > 3 && answered !=6) || ( answered>=1 && answered <3)){
+
+                        announcement = "...not really";
+                        scoreThisQuestion = 0;
+                        isAnswerCorrect = false;
+                    }
+
                 }
+
+
 
                 if (yourAnswer.equals("")) {
 
