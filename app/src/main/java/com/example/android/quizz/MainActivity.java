@@ -641,7 +641,7 @@ public class MainActivity extends AppCompatActivity {
 
                 }else {
 
-                    //each "if" statement gets the player's  answer to be displayed in the toast
+                    //each "if" statement gets the player's  answer to be displayed in the toast.
                     if (lima.isChecked()) {
                         answered = 3;
                         yourAnswer += (lima.getText().toString() + "\n");
