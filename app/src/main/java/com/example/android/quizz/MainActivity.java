@@ -276,17 +276,22 @@ public class MainActivity extends AppCompatActivity {
 
                 }else {
 
+                    scoreThisQuestion = 0;
+                    isAnswerCorrect = false; //to triggers "show" correct answer
+
                     //each "if" statement gets the player's  answer to be displayed in the toast
                     if (sao_paolo.isChecked()) {
-                        yourAnswer += (sao_paolo.getText().toString() + "\n");
 
                         answered = 1;
+                        yourAnswer += (sao_paolo.getText().toString() + "\n");
+
 
                     }
 
                     if (barcelona.isChecked()) {
-                        yourAnswer += (barcelona.getText().toString() + "\n");
+
                         answered = 1;
+                        yourAnswer += (barcelona.getText().toString() + "\n");
 
                     }
 
@@ -307,14 +312,12 @@ public class MainActivity extends AppCompatActivity {
                     if (answered == 3) {
 
                         announcement = "You got only one correct.";
-                        scoreThisQuestion = 0;
-                        isAnswerCorrect = false; //to triggers "show" correct answer
+
 
                     } else if ((answered >3 && answered !=6) || ( answered>=1 && answered <3)) {
 
                         announcement = "Nice try!";
-                        scoreThisQuestion = 0;
-                        isAnswerCorrect = false;
+
                     }
                 }
 
@@ -641,6 +644,9 @@ public class MainActivity extends AppCompatActivity {
 
                 }else {
 
+                    scoreThisQuestion = 0;
+                    isAnswerCorrect = false; //triggers to display the correct answer
+
                     //each "if" statement gets the player's  answer to be displayed in the toast.
                     if (lima.isChecked()) {
                         answered = 3;
@@ -667,15 +673,12 @@ public class MainActivity extends AppCompatActivity {
 
                     if (answered==3) {
 
-                        announcement = "You got only correct";
-                        scoreThisQuestion = 0;
-                        isAnswerCorrect = false; //triggers to display the correct answer
+                        announcement = "You got only one correct";
 
                     }  else if((answered > 3 && answered !=6) || ( answered>=1 && answered <3)){
 
                         announcement = "...not really";
-                        scoreThisQuestion = 0;
-                        isAnswerCorrect = false;
+
                     }
 
                 }
